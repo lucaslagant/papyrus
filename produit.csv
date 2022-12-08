@@ -1,0 +1,15 @@
+B001;Bande magnétique 1200;unité;20;87;240
+B002;Bande magnétique 6250;unite;20;12;410
+D035;CD R slim 80 mm;B010;40;42;150
+D050;CD R-W 80mm;B010;50;4;0
+I100;Papier 1 ex continu;B1000;100;557;3500
+I105;Papier 2 ex continu;B1000;75;5;2300
+I108;Papier 3 ex continu;B500;200;557;3500
+I110;Papier 4 ex continu;B400;10;12;63
+P220;Pré-imprimé commande;B500;500;2500;24500
+P230;Pré-imprimé facture;B500;500;250;12500
+P240;Pré-imprimé bulletin paie;B500;500;3000;6250
+P250;Pré-imprimé bon livraison;B500;500;2500;24500
+P270;Pré-imprimé bon fabrication;B500;500;2500;24500
+R080;ruban Epson 850;unite;10;2;120
+R132;ruban impl 1200 lignes;unite;25;200;182
