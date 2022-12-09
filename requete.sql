@@ -47,3 +47,26 @@ SELECT numcom, datcom FROM `entcom` WHERE numfou = (SELECT numfou FROM `entcom` 
 SELECT libart,prix1 FROM `vente`,`produit`
 WHERE produit.codart = vente.codart AND stkphy > 0 AND 'prix' < (select min(prix1) FROM `vente`,`produit` 
 WHERE produit.codart = vente.codart AND libart  LIKE 'R%' )GROUP BY libart,prix1;
+
+-- 15 - Sortir la liste des fournisseurs susceptibles de livrer les produits dont le stock est inférieur ou égal à 150 % du stock d'alerte.
+SELECT libart, numfou, nomfou, stkale, stkphy FROM `produit`, `fournis` WHERE stkphy <= (stkale * 1.5);
+
+-- 16 - Sortir la liste des fournisseurs susceptibles de livrer les produits dont le stock est inférieur ou égal à 150 % du stock d'alerte, et un délai de livraison d'au maximum 30 jours.
+SELECT libart, fournis.numfou, nomfou, stkale, stkphy, delliv FROM `produit`, `fournis`, `vente` WHERE stkphy <= (stkale * 1.5) AND delliv < 30;
+
+-- 17 - Avec le même type de sélection que ci-dessus, sortir un total des stocks par fournisseur, triés par total décroissant.
+SELECT numfou, stkphy FROM `vente`, `produit` WHERE produit.codart = produit.codart GROUP BY numfou ORDER BY 'stock' DESC;
+
+-- 18 - En fin d'année, sortir la liste des produits dont la quantité réellement commandée dépasse 90% de la quantité annuelle prévue.
+SELECT libart, qtecde FROM `produit`, `ligcom` WHERE produit.codart = ligcom.codart GROUP BY libart, qteann HAVING qteann * 0.90 < qtecde;
+
+-- 19 - Calculer le chiffre d'affaire par fournisseur pour l'année 2018, sachant que les prix indiqués sont hors taxes et que le taux de TVA est 20%.
+SELECT numfou, qtecde * priuni * 0.20 FROM `ligcom`, `entcom` WHERE entcom.numcom = ligcom.numcom GROUP BY numfou;
+
+
+-- MODIFIER UNE BDD
+
+-- 1 - Appliquer une augmentation de tarif de 4% pour le prix 1, et de 2% pour le prix2, pour le fournisseur 9180.
+UPDATE `vente` SET prix1 = prix *0.04 AND prix2 = prix2 * 0.02 WHERE numfou = 9180;
+
+-- 2 - Dans la table vente, mettre à jour le prix2 des articles dont le prix2 est nul, en affectant la valeur du prix1.
